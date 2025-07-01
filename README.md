@@ -1,7 +1,8 @@
 # machinetest-agent
 
+**[Specification](./docs/Machine test langgraph.docx)**
+
 Steps to run locally
-Copy .env.local to .env and add the required environment variables. (not needed for main.py but will be needed for graph.py)
 
 Install dependencies (using pip):
 
