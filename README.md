@@ -1,6 +1,6 @@
 # machinetest-agent
 
-**[Specification](./docs/Machine test langgraph.docx)**
+![Specification](./docs/Machine test langgraph.docx)
 
 Steps to run locally
 
