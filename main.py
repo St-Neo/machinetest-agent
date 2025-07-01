@@ -4,6 +4,7 @@ from typing import TypedDict, List, Optional, Dict, Any, Annotated
 from langgraph.graph import StateGraph, START, END
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph.message import add_messages
+
 class GraphState(TypedDict):
     reserach_topic: str
     plan: Optional[List[str]] = None
@@ -172,6 +173,12 @@ builder.add_edge("end", END)
 
 research_agent_app = builder.compile(checkpointer=memory, interrupt_before=["ask_human"])
 
+
+human_correction = {
+        "correction_for_claim": "The claim about a 2030 breakthrough is unverified.",
+        "human_instruction": "Re-run news search: 'peer-reviewed papers on cold fusion commercial viability'"
+    }
+
 def run_scenario(reserach_topic, human_feedback=None):
     print("\n" + "="*50)
     print(f" TOPIC: {reserach_topic}")
@@ -211,11 +218,8 @@ def run_scenario(reserach_topic, human_feedback=None):
     print("\nFinal State:")
     print(json.dumps(final_state_values, indent=2, default=str))
 
+
 if __name__ == "__main__":
     run_scenario("NVIDIA")
     #run_scenario("The Acme Corporation")
-    human_correction = {
-        "correction_for_claim": "The claim about a 2030 breakthrough is unverified.",
-        "human_instruction": "Re-run news search: 'peer-reviewed papers on cold fusion commercial viability'"
-    }
     #run_scenario("The future of cold fusion", human_feedback=human_correction)
